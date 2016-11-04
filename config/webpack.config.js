@@ -30,13 +30,17 @@ var webpackConfig={
 	      //'pages': path.join(__dirname, '../src/wxPages'),
 	      'images': path.join(__dirname, '../statics/images'),
 	      'mock': path.join(__dirname, '../src/javascript/mock'),
-	      'fonts': path.join(__dirname, '../res/fonts'),
-	      'jquery': path.join(__dirname, '../src/javascript/lib/jquery-3.1.1.js')
+	      'fonts': path.join(__dirname, '../statics/fonts'),
+	      'jquery': path.join(__dirname, '../node_modules/jquery/dist/jquery.min.js')
 	    }
 	},
 	module:{
 		//各种加载器，即让各种文件格式可用require引用
 		//如果我们想要在js文件中通过require引入模块，比如css或image，那么就需要在这里配置加载器，这一点对于React来说相当方便，因为可以在组件中使用模块化CSS。而一般的项目中可以不用到这个加载器。
+		//noParse: [
+	    noParse: [
+	      path.join(__dirname, '../node_modules/jquery/dist/jquery.min.js')
+	    ],
 		loaders: [
 		      {
 		        test: /.jsx?$/,
@@ -69,16 +73,16 @@ var webpackConfig={
 		return [precss,autoprefixer]
 	},*/
 	plugins:[
-		////提供全局的变量，在模块中使用无需用require引入
-		/*new webpack.ProvidePlugin({
+		new webpack.HotModuleReplacementPlugin(),//Webpack 用来做模块热替换(hot module replacement)HRM
+		new ExtractTextPlugin('[name].css'),
+    	new webpack.NoErrorsPlugin(),
+    	////提供全局的变量，在模块中使用无需用require引入
+    	new webpack.ProvidePlugin({
 	      $: "jquery",
 	      jQuery: "jquery",
 	      "window.jQuery": "jquery",
 	      "Modernizr": "Modernizr"
-	    })*/
-		new webpack.HotModuleReplacementPlugin(),//Webpack 用来做模块热替换(hot module replacement)HRM
-		new ExtractTextPlugin('[name].css'),
-    	new webpack.NoErrorsPlugin()
+	    })
 	]
 };
 
@@ -87,7 +91,7 @@ var webpackConfig={
 function injectEntry() {
   defaultSettings.pagesToPath().forEach(function (item) {
     webpackConfig.entry[item.name] = [
-      'webpack-dev-server/client?http://localhost:' + defaultSettings.port,//资源服务器地址
+      'webpack-dev-server/client?http://172.16.11.127:' + defaultSettings.port,//资源服务器地址
       'webpack/hot/only-dev-server',
       item.entry
     ];

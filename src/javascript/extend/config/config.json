@@ -1,0 +1,6 @@
+{
+	"current" : "dev",
+	"test" : "http://localhost:8080/",
+	"dev" : "http://172.16.11.127:8080/fightgroup-web/",
+	"online" : "http://yougo.xinguang.com/fightgroup-web/"
+}

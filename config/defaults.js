@@ -17,6 +17,14 @@ var pages =[{
 	name:"FillInfo/index",
 	entry:'FillInfo/index.jsx',
 	ftl: 'wxPages/FillInfo/index.html'
+},{
+    name:"JoinGroup/index",
+    entry:'JoinGroup/index.jsx',
+    ftl: 'wxPages/JoinGroup/index.html'
+},{
+    name:"RouteList/index",
+    entry:'RouteList/index.jsx',
+    ftl: 'wxPages/RouteList/index.html'
 }];
 
 var pagesToPath=function (){
@@ -38,7 +46,7 @@ module.exports = {
     filePath: filePath,
     pages: pages,
     pagesToPath: pagesToPath,
-    port: 8090,
+    port: 8091,
     chunks: chunks
 };
 //这里module.exports 用于返回一些{全局共享}的常量或者变量 

@@ -4,6 +4,7 @@ Nodejs下利用gulp +webpack + React 实现前端工程化 架构实践
 develop分支的代码是最新的.
 
 安装：
+
 1. 将代码git 到本地，默认git 下来对应本地分支是master
 
 2. 切换最新代码分支: git checkout develop

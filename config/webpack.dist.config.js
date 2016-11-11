@@ -1,4 +1,4 @@
-/*var webpack = require('webpack');
+var webpack = require('webpack');
 var path = require('path');
 var defaultSettings = require('./defaults');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
@@ -14,7 +14,7 @@ var webpackConfig = {
   output: {
     path: filePath.build,
     filename: '[name].[hash].js',
-    publicPath: '/fightgroup-web/public/build/'
+    publicPath: '/build'
   },
   devtool: false,
   cache: false,
@@ -30,7 +30,7 @@ var webpackConfig = {
       'images': path.join(__dirname, '../statics/images'),
       'mock': path.join(__dirname, '../src/javascript/mock'),
       'fonts': path.join(__dirname, '../res/fonts'),
-      'jquery': path.join(__dirname, '../src/javascript/lib/jquery-3.1.1.js')
+      'jquery': path.join(__dirname, '../node_modules/jquery/dist/jquery.min.js')
     }
   },
   module: {
@@ -130,4 +130,4 @@ function injectHtmlWebpack() {
   injectHtmlWebpack();
 })();
 
-module.exports = webpackConfig;*/
+module.exports = webpackConfig;

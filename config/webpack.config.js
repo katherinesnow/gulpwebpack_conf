@@ -9,7 +9,7 @@ var autoprefixer = require('autoprefixer'); //自动补充css前缀功能
 
 
 var webpackConfig={
-	entry: {},//entry 入口函数表示出那些事需要单独打包成一个js包的
+	entry: {},//entry 入口函数表示出那些是需要单独打包成一个js包的
 	output:{
 		path:filePath.build,//生成的文件目录，绝对路径//于配置文件发布路径，如CDN或本地服务器
 		filename:'[name].js',// //根据入口文件输出的对应多个文件名
@@ -87,7 +87,7 @@ var webpackConfig={
 };
 
 //入口注入
-//那如果我们想要将打包好的js存放在指定的位置又要如何进行操作呢
+//那如果我们想要将打包好的js存放在指定的位置又要如何进行操作呢?
 function injectEntry() {
   defaultSettings.pagesToPath().forEach(function (item) {
     webpackConfig.entry[item.name] = [
@@ -99,7 +99,7 @@ function injectEntry() {
   });
 
   //console.log('webpackConfig.entry', webpackConfig.entry);
-  //['webpack-dev-server/client?http://localhost:8090','webpack/hot/only-dev-server','Page/FillInfo/index.jsx']
+  //['webpack-dev-server/client?http://localhost:8091','webpack/hot/only-dev-server','Page/FillInfo/index.jsx']
 }
 
 function injectHtmlWebpack() {

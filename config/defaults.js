@@ -3,7 +3,7 @@ var chunks=[];
 var filePath = {
 	srcPath: path.join(__dirname,'../src'),//__dirname  当前路径 src样式文件源码根目录
 	tplPath: path.join(__dirname,'../src'),//页面文件源码根目录
-	build:path.join(__dirname,'../bulid'),//编译目录
+	build:path.join(__dirname,'../build'),//编译目录
 	devbuild:path.join(__dirname,"../devbuild"),//开发编译目录
 	package:path.join(__dirname,'../package'),//包目录
 	publicPath:'/'

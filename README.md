@@ -27,3 +27,14 @@ develop分支的代码是最新的.
 6. 也可以通过"gulp build" 命令，将所有的文件打包到目录build 中，将build中所有的文件部署到服务器即可.
 
 
+
+gulp 相关配置说明地址: 
+
+http://www.imooc.com/article/13843
+
+webpack 相关 配置说明：
+
+http://www.imooc.com/article/13872
+
+
+初学者，如果有什么问题，还请多多纠正.

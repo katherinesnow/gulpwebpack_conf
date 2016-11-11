@@ -15,7 +15,7 @@ var open =require("open");
 
 var webpackDevServer = require("webpack-dev-server"),
 	defaultSettings = require('./config/defaults.js'),
-	webpackDevConfig = require('./config/webpack.config.js'),//开发环境webpack 配置信息
+	webpackDevConfig = require('./config/webpack.config.js'),//开发环境webpack配置信息
 	webpackDistConfig = require('./config/webpack.dist.config.js'),
 	packageConfig = require('./config/package.js');
 
@@ -51,13 +51,13 @@ gulp.task('dev', function() {
 gulp.task('clean', function(cb) {
     return del(['build/**/*'], cb);
 });
-/*
-gulp.task("bulid",['clean'],function () {
+
+gulp.task("build",['clean'],function () {
 	return gulp.src(filePath.srcPath)
 		.pipe(gulpWebpack(webpackDistConfig))
 		.pipe(gulp.dest('build/'));
-})
-
+});
+/*
 gulp.task('package', function() {
     return gulp.src(filePath.srcPath)
         .pipe(gulpWebpack(packageConfig))

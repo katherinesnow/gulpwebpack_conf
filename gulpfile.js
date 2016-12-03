@@ -43,7 +43,7 @@ gulp.task('dev', function() {
         console.log('listening: http://localhost:' + defaultSettings.port);
         console.log('Opening your system browser...');
         console.log(defaultSettings.filePath.tplPath);
-        open('http://localhost:' + defaultSettings.port + '/webpack-dev-server/');
+        open('http://localhost:' + defaultSettings.port + '/webpack-dev-server/');//可以是localhost或者是127.0.0.1
     });
 });
 

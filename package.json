@@ -16,6 +16,7 @@
   "devDependencies": {
     "autoprefixer": "^6.5.1",
     "autoprefixer-loader": "^3.2.0",
+    "babel-cli": "^6.18.0",
     "babel-core": "^6.17.0",
     "babel-eslint": "^7.0.0",
     "babel-loader": "^6.2.5",
@@ -61,7 +62,8 @@
     "webpack-module-hot-accept": "^1.0.4"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "babelcli":"babel src -d build"
   },
   "keywords": [
     "gulp",

@@ -44,7 +44,7 @@ var webpackConfig={
 		loaders: [
 		      {
 		        test: /.jsx?$/,
-		        loaders: ['react-hot', 'babel-loader?presets[]=es2015&presets[]=react&presets[]=stage-0&presets[]=stage-1', 'webpack-module-hot-accept'],
+		        loaders: ['react-hot', 'babel-loader?cacheDirectory=true&presets[]=es2015&presets[]=react&presets[]=stage-0&presets[]=stage-1', 'webpack-module-hot-accept'],
 		        exclude: /node_modules/
 		      },
 		      {
@@ -91,7 +91,7 @@ var webpackConfig={
 function injectEntry() {
   defaultSettings.pagesToPath().forEach(function (item) {
     webpackConfig.entry[item.name] = [
-      'webpack-dev-server/client?http://172.16.11.127:' + defaultSettings.port,//资源服务器地址
+      'webpack-dev-server/client?http://172.16.22.198:' + defaultSettings.port,//资源服务器地址
       'webpack/hot/only-dev-server',
       item.entry
     ];

@@ -44,7 +44,7 @@ var webpackConfig={
 		loaders: [
 		      {
 		        test: /.jsx?$/,
-		        loaders: ['react-hot', 'babel-loader?cacheDirectory=true&presets[]=es2015&presets[]=react&presets[]=stage-0&presets[]=stage-1', 'webpack-module-hot-accept'],
+		        loaders: ['react-hot', 'babel-loader?cacheDirectory=true&presets[]=es2015&presets[]=react&presets[]=stage-0&presets[]=stage-1&plugins[]=transform-runtime', 'webpack-module-hot-accept'],
 		        exclude: /node_modules/
 		      },
 		      {

@@ -39,6 +39,8 @@ class IndexComponent extends Component {
 }
 
 function doRender(){
+	Array.from({length:100}).map(function(item,index){return index});
+
 	ReactDOM.render(<IndexComponent />,document.getElementById('app'));
 }
 

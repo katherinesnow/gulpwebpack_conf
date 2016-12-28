@@ -39,9 +39,28 @@ class IndexComponent extends Component {
 }
 
 function doRender(){
-	Array.from({length:100}).map(function(item,index){return index});
-
 	ReactDOM.render(<IndexComponent />,document.getElementById('app'));
 }
 
 setTimeout(doRender,16);
+
+class Learning extends Component {
+	constructor(props) {
+		super(props);
+		this.state = {
+
+		};
+	}
+
+	render() {
+		return (
+            <div>
+                 <button color="blue">
+                     <b style={color:"white",display:"block"}></b>
+                 </button>
+            </div>
+		);
+	}
+}
+
+ReactDOM.render(<Learning />,document.getElementById('custom'));

@@ -13,7 +13,6 @@ class IndexComponent extends Component {
 
 		}
 	}
-	//子组件调用父组件的属性和方法
 	render(){
 		return (
 			<div className="nav">

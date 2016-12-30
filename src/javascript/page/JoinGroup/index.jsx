@@ -53,14 +53,88 @@ class Learning extends Component {
 	}
 
 	render() {
+		let content = "<strong>content</strong>";
+		let style = {
+			"color":"white",
+			"display":"block"
+		};
 		return (
             <div>
                  <button color="blue">
-                     <b style={color:"white",display:"block"}></b>
+                     <b style={style}>sdfsdfsdfsd</b>
                  </button>
+                 
             </div>
 		);
 	}
 }
 
-ReactDOM.render(<Learning />,document.getElementById('custom'));
+//ReactDOM.render(<Learning />,document.getElementById('custom'));
+
+
+class TodoItems extends Component {
+	constructor(props) {
+		super(props);
+	}
+
+	render() {
+		let listdata = this.props.listdata;
+
+		let listItems = listdata.map( (item) => {
+			return <li key={item.key}>{item.text}</li>
+		});
+
+		return (
+			<ul>
+				{listItems}
+			</ul>
+		);
+	}
+}
+class TodoList extends Component {
+	constructor(props) {
+		super(props);
+		this.state = {
+			items: []
+		};
+	}
+
+	addItem(e) {
+		let itemArray = this.state.items;
+		itemArray.push({
+			text: this.refs.inputElement.value,
+			key:Date.now(),
+		});
+
+		this.setState({
+			items:itemArray
+		});
+		
+		//后台数据接口，处理数据
+		this.refs.inputElement.value = "";
+
+		e.preventDefault();
+		console.log(this.state.items);
+	}
+
+	render() {
+		return (
+			<div className="todoListMain">
+				<div className="header">
+	                <form action="" onSubmit={this.addItem.bind(this)} >
+	 					<input type="text" ref="inputElement" placeholder="enter task"/>
+	 					<button type="submit">add</button>
+	                </form>
+				</div>
+				<div className="list">
+					<TodoItems listdata = {this.state.items} />
+				</div>
+			</div>
+		);
+		
+	}
+}
+
+
+
+ReactDOM.render(<TodoList />,document.getElementById('list'));

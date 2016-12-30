@@ -1,0 +1,32 @@
+.todoListMain{
+	padding:0 0.1rem;
+	margin-top:0.2rem;
+
+	input {
+		height: 0.34rem;
+		line-height: 0.34rem;
+		padding-left:0.1rem;
+		font-size: 0.16rem;
+	}
+
+	button {
+		width:0.6rem;
+		height:0.34rem;
+		line-height:0.34rem;
+		margin-left:0.1rem;
+		border-radius: 0.04rem;
+		border:none;
+		font-size: 0.16rem;
+	}
+
+	.list {
+		margin-top:0.2rem;
+		ul li{
+			line-height:0.34rem;
+			height:0.34rem;
+			border-bottom: 1px solid #ccc;
+			font-size: 16px;
+    
+		}
+	}
+}

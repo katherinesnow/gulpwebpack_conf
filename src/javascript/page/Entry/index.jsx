@@ -34,7 +34,7 @@ class TodoList extends Component{
 		return (
 			<div className="dolist">
 				<TypeNew handleChange={handleChange}  todo={this.state.todolist}/>
-				<ListTodo todo={this.state.todolist} handleDel={handleChange}/>
+				<ListTodo todo={th21ndleChange}/>
 			</div>
 		);
 	}

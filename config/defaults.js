@@ -25,6 +25,10 @@ var pages =[{
     name:"RouteList/index",
     entry:'RouteList/index.jsx',
     ftl: 'wxPages/RouteList/index.html'
+},{
+    name:"FileUploader/index",
+    entry:'FileUploader/index.jsx',
+    ftl: 'wxPages/FileUploader/index.html'
 }];
 
 var pagesToPath=function (){

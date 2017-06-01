@@ -1,4 +1,6 @@
 # gulpwebpack_conf
+webpack 升级V1.0-V2.0 http://note.youdao.com/noteshare?id=ca2316df828242e6703f3aaaf165ce54
+
 Nodejs下利用gulp +webpack 实现前端工程化
 
 1. git clone 代码到本地

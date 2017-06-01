@@ -1,1 +1,131 @@
+# Webpack 从V1.0 迁移到V2.0 
+> 以下内容是自己自己结合官网说明在实践配置过程中遇到的关键点问题整理. 欢迎大家提出意见或者建议.
+
+
+## resolve.root, resolve.fallback, resolve.modulesDirectories
+这些选项被一个单独的选项 resolve.modules 取代
+
+```
+resolve: {
+    //root: path.join(__dirname, "src") webpackV1.0
+    modules: [
+        path.join(__dirname, "src"),
+        "node_modules"
+    ]
+  }
+```
+
+## resolve.extensions
+此选项不再需要传一个空字符串。此行为被迁移到 resolve.enforceExtension
+
+```
+resolve: {
+        <!--extensions: [' ','.js', '.jsx']-->
+        extensions: ['.js', '.jsx'],
+            
+        }
+```
+## module.loaders 改为 module.rules
+旧的 loader 配置被更强大的 rules 系统取代，后者允许配置 loader 以及其他更多选项。 为了兼容旧版，module.loaders 语法仍然有效，旧的属性名依然可以被解析。 新的命名约定更易于理解，并且是升级配置使用 module.rules 的好理由。
+
+
+```
+module: {
+        noParse: [
+            path.join(__dirname, '../node_modules/jquery/dist/jquery.min.js')
+        ],
+        rules: [
+            /*{
+                test: /\.js|jsx$/,
+                loader: 'happypack/loader?id=happybabel',
+                exclude: /node_modules/
+            },*/
+            {
+                test: /.jsx?$/,
+                use: ['react-hot-loader', 'babel-loader?cacheDirectory=true&presets[]=es2015&presets[]=react&presets[]=stage-0&presets[]=stage-1&presets[]=stage-3&plugins[]=transform-runtime', 'webpack-module-hot-accept'],
+                exclude: /node_modules/,
+                // noParse: [pathToReact,pathToReactDOM,pathToReactRouter]
+            },
+            {
+                test: /\.scss/,
+                use: [
+                    "style-loader",
+                    "css-loader" ,
+                    "postcss-loader", 
+                    "sass-loader?outputStyle=compressed"
+                ]
+            },
+            {
+                test: /\.css$/,
+                use: [
+                    "style-loader",
+                    "css-loader",
+                    "postcss-loader"
+                ]
+            },
+            {
+                test: /\.(png|jpg|gif|woff|woff2|eot|ttf|svg)$/,
+                use: ['url-loader?limit=1&name=res/[name].[hash:8].[ext]' ]
+            }/*,
+            {
+                test: /\.json$/,
+                use: 'json-loader'
+            }*/
+        ]
+    },
+```
+
+## 链式 loader
+就像在 webpack 1 中，loader 可以链式调用，上一个 loader 的输出被作为输入传给下一个 loader。使用 rule.use 配置选项，use 可以设置为一个 loader 数组。 在 webpack 1 中，loader 通常被用 ! 连写。这一写法在 webpack 2 中只在使用旧的选项 module.loaders 时才有效。
+
+
+```
+module: {
+-   loaders: [{
++   rules: [{
+      test: /\.less$/,
+-     loader: "style-loader!css-loader!less-loader"
++     use: [
++       "style-loader",
++       "css-loader",
++       "less-loader"
++     ]
+    }]
+  }
+```
+
+
+## 取消「在模块名中自动添加 -loader 后缀」
+在引用 loader 时，不能再省略 -loader 后缀了,必须添加*-loader
+
+## json-loader 不再需要手动添加
+如果没有为 JSON 文件配置 loader，webpack 将自动尝试通过 json-loader 加载 JSON 文件。
+
+可以去掉原来的json-loader配置
+
+为了消除 webpack、 node.js 和 browserify 之间的环境差异
+
+## ExtractTextWebpackPlugin 破坏性改动
+详细参考官网
+
+## gulp-webpack 结合使用
+如果你使用了gulp-webpack,如果webpack 升级为V2.0后，gulp-webpack相关的配置要修改.
+gulpwebpack的第二个参数要配置成相应的webpack版本对象.
+具体参考gulp-webpack 官方包。
+https://www.npmjs.com/package/gulp-webpack
+> If you would like to use a different version of webpack than the one this plugin uses, pass in an optional 2nd argument:
+
+> 具体参见第6行的第二参数配置
+```
+1. var gulp = require('gulp');
+2. var webpack = require('webpack');
+3. var gulpWebpack = require('gulp-webpack');
+4. gulp.task('default', function() {
+5.     return gulp.src('src/entry.js')
+6.            .pipe(gulpWebpack({}, webpack))
+7.            .pipe(gulp.dest('dist/'));
+8.});
+
+```
+
 

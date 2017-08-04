@@ -11,8 +11,15 @@ import 'components/Jcrop/jquery.Jcrop.min.css';
 class IndexComponent extends Component {
 	constructor(props){
 		super(props);
+
 		this.state = {
-			files:[]
+			files:[],
+            region:'oss-cn-hangzhou',
+            urllib:OSS.urllib,
+            Buffer:OSS.Buffer,
+            OSS :OSS.Wrapper,
+            STS :OSS.STS,
+            blob:''
 		};
 	}
 
@@ -94,8 +101,58 @@ class IndexComponent extends Component {
         //获取裁剪完后的base64图片url,转换为blob  
         let data=document.getElementById("myCan").toDataURL();  
         let blob = this.dataURLtoBlob(data);
-        console.log(blob);
+       
+        this.applyTokenDo(this.uploadFile,blob);
     }
+    
+    uploadFile  (client,blob) {
+       let that = this;
+       var file =document.getElementById("file").files[0];
+       var key = "images/testObjectname.png";
+       //console.log(file.name + ' => ' + key);
+
+      return client.multipartUpload(key, file, {
+        //progress: that.progress
+        headers:{
+            "x-oss-object-acl":'public-read',
+        }
+      })/*.then(function (res) {
+
+        //console.log('upload success: %j', res);
+        //return listFiles(client);
+      })*/;
+    }
+
+    applyTokenDo (func,blob) {
+        let that = this;
+        var url = 'http://172.16.1.51:8022/getOSSConfig';
+        return   this.state.urllib.request(url, {
+            method: 'GET'
+        }).then(function (result) {
+            var creds = JSON.parse(result.data);
+            var client = new OSS({
+              region: that.state.region,
+              accessKeyId: creds.data.accessKey,
+              accessKeySecret: creds.data.secret,
+              stsToken: creds.data.token,
+              bucket: creds.data.bucket
+            });
+
+            return func(client,blob);
+        });
+    }
+
+
+    progress (p) {
+      return function (done) {
+        var bar = document.getElementById('progress-bar');
+        bar.style.width = Math.floor(p * 100) + '%';
+        bar.innerHTML = Math.floor(p * 100) + '%';
+        done();
+      }
+    }
+
+
 
 	render() {
 
@@ -111,7 +168,7 @@ class IndexComponent extends Component {
                     }):''}
                 </div>
                 <div className="croparea">
-                    <div className="uploadPics">
+                    <div className="uploadPics" >
                         <div className="picCont" >  
                             <div id="imgfield" className="imgfield" ></div>  
                         </div> 

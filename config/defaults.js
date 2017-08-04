@@ -17,11 +17,11 @@ var pages =[{
 	name:"FillInfo/index",
 	entry:'FillInfo/index.jsx',
 	ftl: 'wxPages/FillInfo/index.html'
-},{
+},/*{
     name:"JoinGroup/index",
     entry:'JoinGroup/index.jsx',
     ftl: 'wxPages/JoinGroup/index.html'
-},{
+},*/{
     name:"RouteList/index",
     entry:'RouteList/index.jsx',
     ftl: 'wxPages/RouteList/index.html'

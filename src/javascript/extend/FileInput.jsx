@@ -100,7 +100,7 @@ class FileInput extends Component {
 		return (
 			<div>
                 <a href="javascript:;" className={className}>
-                    <input type="file" multiple={this.props.multiple} ref="fileInput"  onChange={this._onChange.bind(this)} />
+                    <input type="file" id="file" multiple={this.props.multiple} ref="fileInput"  onChange={this._onChange.bind(this)} />
                     <span>{this.props.btnValue}</span>
                 </a>
                 <span className="err" ref="err_tip"></span>

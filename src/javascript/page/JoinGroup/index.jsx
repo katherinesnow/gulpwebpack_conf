@@ -307,8 +307,6 @@ class Person  extends Component {
       )
   }
 }
-import pureRender from "pure-render-decorator";
-
 
 class GetInputReRender extends Component {
     constructor(props){
